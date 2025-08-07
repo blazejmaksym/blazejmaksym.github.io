@@ -1,544 +1,441 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #3874c0; -webkit-text-stroke: #3874c0; background-color: #121313}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #3874c0; -webkit-text-stroke: #3874c0; background-color: #121313; min-height: 16.0px}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 14.0px 'Apple Color Emoji'; font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz dla Przyjaciół! (Wersja Rozszerzona)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .answer-btn.selected {
+            background-color: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+        .answer-btn.correct {
+            background-color: #22c55e;
+            color: white;
+            border-color: #22c55e;
+        }
+        .answer-btn.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="pl"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Quiz dla Przyjaciół! (Wersja Rozszerzona)&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.gradient-bg {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: rgba(255, 255, 255, 0.9);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: all 0.2s ease-in-out;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 12px rgba(0,0,0,0.15);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.answer-btn.selected {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #4f46e5;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: white;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-color: #4f46e5;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.answer-btn.correct {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #22c55e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: white;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-color: #22c55e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.answer-btn.incorrect {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #ef4444;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: white;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-color: #ef4444;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body class="gradient-bg min-h-screen flex items-center justify-center p-4"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="app" class="w-full max-w-2xl mx-auto"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Ekran logowania --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="login-screen" class="card rounded-2xl p-8 shadow-2xl text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl font-bold text-gray-800 mb-2"&gt;Quiz dla Przyjaciół!&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 mb-6"&gt;Dołącz do gry i sprawdź swoją wiedzę.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="player-name" placeholder="Wpisz swoje imię" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="quiz-id-input" placeholder="Wpisz ID quizu (jeśli dołączasz)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="create-quiz-btn" class="btn w-full sm:w-auto bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-indigo-700"&gt;Stwórz nowy quiz&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="join-quiz-btn" class="btn w-full sm:w-auto bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-600"&gt;Dołącz do quizu&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p id="error-message" class="text-red-500 mt-4 h-5"&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Poczekalnia --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="lobby-screen" class="hidden card rounded-2xl p-8 shadow-2xl text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-4"&gt;Poczekalnia&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 mb-2"&gt;ID Twojego quizu (podaj znajomym):&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center justify-center gap-2 mb-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p id="quiz-id-display" class="text-2xl font-mono bg-gray-200 text-gray-800 px-4 py-2 rounded-lg"&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="copy-id-btn" class="btn bg-gray-300 p-2 rounded-lg hover:bg-gray-400"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;&lt;/svg&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 mb-4"&gt;Czekamy na resztę graczy...&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="player-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- Lista graczy pojawi się tutaj --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="host-controls" class="hidden mt-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="start-quiz-btn" class="btn w-full bg-indigo-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-indigo-700 text-xl"&gt;Start!&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>&lt;p class="text-sm text-gray-500 mt-4"&gt;Twórca quizu rozpoczyna grę.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Ekran quizu --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="quiz-screen" class="hidden card rounded-2xl p-8 shadow-2xl"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center mb-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div id="question-counter" class="text-lg font-semibold text-gray-700"&gt;Pytanie 1 / 25&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div id="timer" class="text-2xl font-bold text-indigo-600"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="bg-gray-200 h-2 rounded-full mb-6"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div id="progress-bar" class="bg-indigo-500 h-2 rounded-full" style="width: 0%;"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center min-h-[100px]"&gt;Ładowanie pytania...&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="answer-options" class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- Opcje odpowiedzi pojawią się tutaj --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="next-question-container" class="text-center mt-8 hidden"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                 </span>&lt;button id="next-question-btn" class="btn bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-indigo-700"&gt;Następne pytanie&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Ekran wyników i rankingu --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="scoreboard-screen" class="hidden card rounded-2xl p-8 shadow-2xl"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>&lt;h2 id="scoreboard-title" class="text-3xl font-bold text-gray-800 mb-6 text-center"&gt;Ranking&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>&lt;div id="scoreboard" class="space-y-3"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                 </span>&lt;!-- Wyniki pojawią się tutaj --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>&lt;div id="final-results-controls" class="hidden text-center mt-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="play-again-btn" class="btn bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-indigo-700"&gt;Zagraj jeszcze raz&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script type="module"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Importy Firebase</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { getFirestore, doc, setDoc, getDoc, onSnapshot, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- KONFIGURACJA ---</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "YOUR_API_KEY", authDomain: "YOUR_AUTH_DOMAIN", projectId: "YOUR_PROJECT_ID" };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const appId = typeof __app_id !== 'undefined' ? __app_id : 'friends-quiz-app';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Inicjalizacja Firebase</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const app = initializeApp(firebaseConfig);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const auth = getAuth(app);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const db = getFirestore(app);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- BAZA PYTAŃ ---</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const allQuestions = [</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Kategoria: Friends</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jak nazywał się pingwin-przytulanka Joey'ego?", options: ["Huggsy", "Waddles", "Snowy", "Flipper"], answer: "Huggsy" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jakie jest drugie imię Chandlera?", options: ["Muriel", "Marcel", "Bing", "Eustace"], answer: "Muriel" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Ile sióstr ma Joey?", options: ["5", "6", "7", "8"], answer: "7" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jak ma na imię siostra bliźniaczka Phoebe?", options: ["Ursula", "Regina", "Fiona", "Leslie"], answer: "Ursula" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jaki był pies Ross'a i Moniki z dzieciństwa?", options: ["Bobo", "LaPooh", "Chi-Chi", "Patches"], answer: "Chi-Chi" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Kim z zawodu jest Ross?", options: ["Archeologiem", "Geologiem", "Antropologiem", "Paleontologiem"], answer: "Paleontologiem" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Kto mówi słynne 'Oh. My. God.'?", options: ["Janice", "Gunther", "Carol", "Estelle"], answer: "Janice" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Kategoria: Formuła 1</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Który kierowca zdobył najwięcej tytułów Mistrza Świata (razem z M. Schumacherem)?", options: ["Ayrton Senna", "Lewis Hamilton", "Sebastian Vettel", "Alain Prost"], answer: "Lewis Hamilton" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jak nazywany jest tor Monza we Włoszech?", options: ["Świątynia Prędkości", "Zielone Piekło", "Magiczny Tor", "Arena Mistrzów"], answer: "Świątynia Prędkości" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "W jakim zespole jeździ Max Verstappen?", options: ["Mercedes", "Ferrari", "McLaren", "Red Bull Racing"], answer: "Red Bull Racing" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Ile punktów otrzymuje kierowca za zwycięstwo w Grand Prix?", options: ["20", "25", "30", "18"], answer: "25" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Z jakiego kraju pochodzi zespół Ferrari?", options: ["Niemcy", "Wielka Brytania", "Włochy", "Francja"], answer: "Włochy" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Co oznacza czarno-biała flaga w szachownicę w F1?", options: ["Kara", "Ostrzeżenie", "Koniec wyścigu", "Awaria bolidu"], answer: "Koniec wyścigu" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Kategoria: Polska</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jaki jest najwyższy szczyt w Polsce?", options: ["Giewont", "Śnieżka", "Rysy", "Babia Góra"], answer: "Rysy" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Które polskie miasto słynie z pierników?", options: ["Kraków", "Gdańsk", "Poznań", "Toruń"], answer: "Toruń" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Kto był pierwszym koronowanym królem Polski?", options: ["Mieszko I", "Bolesław I Chrobry", "Kazimierz Wielki", "Władysław Jagiełło"], answer: "Bolesław I Chrobry" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jaka jest najdłuższa rzeka w Polsce?", options: ["Odra", "Warta", "Bug", "Wisła"], answer: "Wisła" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Który polski kompozytor słynie z polonezów i mazurków?", options: ["Stanisław Moniuszko", "Henryk Wieniawski", "Fryderyk Chopin", "Ignacy Jan Paderewski"], answer: "Fryderyk Chopin" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">             </span>// Kategoria: Z naszych rozmów</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Kto zaproponował nagrywanie spotkania i transkrypcję AI?", options: ["Błażej", "Marta", "Ewelka", "Kuras"], answer: "Ewelka" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Na którą godzinę Błażej ustawił spotkanie?", options: ["21:00", "21:15", "20:30", "21:30"], answer: "21:15" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Kto jako pierwszy podał swojego maila w rozmowie?", options: ["Kuras", "Błażej", "Marta Kędzierska Kurasinska", "Ewelka"], answer: "Marta Kędzierska Kurasinska" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Jaki program do rysowania został wspomniany w rozmowie?", options: ["Photoshop", "Miro", "Figma", "Canva"], answer: "Figma" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Co Błażej zrobił z zebranymi mailami?", options: ["Wysłał zaproszenie", "Zapisał w notatkach", "Dodał do opisu grupy", "Wydrukował"], answer: "Dodał do opisu grupy" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Kto zapytał 'Evelka, a chcesz jechać ? xD'?", options: ["Kuras", "Błażej", "Kuba", "Marta"], answer: "Błażej" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ question: "Co według Marty trzeba by zrobić z rowerem, żeby zmieściła się Ewelka?", options: ["Sprzedać go", "Złożyć go", "Pomalować go", "Zostawić w domu"], answer: "Złożyć go" },</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Funkcja do tasowania tablicy (algorytm Fisher-Yates)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const shuffleArray = (array) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let i = array.length - 1; i &gt; 0; i--) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const j = Math.floor(Math.random() * (i + 1));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>[array[i], array[j]] = [array[j], array[i]];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return array;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const questions = shuffleArray([...allQuestions]);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- ZMIENNE STANU APLIKACJI ---</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let currentUser = null;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let currentQuizId = null;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let isHost = false;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let unsubscribeQuiz = null;<span class="Apple-converted-space"> </span></span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- ELEMENTY DOM ---</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const loginScreen = document.getElementById('login-screen');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const lobbyScreen = document.getElementById('lobby-screen');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const quizScreen = document.getElementById('quiz-screen');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const scoreboardScreen = document.getElementById('scoreboard-screen');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const errorMessage = document.getElementById('error-message');</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- FUNKCJE POMOCNICZE ---</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const showScreen = (screen) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[loginScreen, lobbyScreen, quizScreen, scoreboardScreen].forEach(s =&gt; s.classList.add('hidden'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>screen.classList.remove('hidden');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const setError = (message) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>errorMessage.textContent = message;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; errorMessage.textContent = '', 3000);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const getQuizRef = (quizId) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return doc(db, "artifacts", appId, "public/data/quizzes", quizId);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- LOGIKA QUIZU ---</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('create-quiz-btn').addEventListener('click', async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const playerName = document.getElementById('player-name').value.trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!playerName) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setError("Musisz podać swoje imię!");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>isHost = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const newQuizId = Math.random().toString(36).substring(2, 8).toUpperCase();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>currentQuizId = newQuizId;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const quizData = {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>hostId: currentUser.uid,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>status: 'lobby',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentQuestionIndex: -1,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>players: {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[currentUser.uid]: { name: playerName, score: 0, answer: null }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>createdAt: new Date(),</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>questions: questions // Zapisujemy potasowaną listę pytań</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await setDoc(getQuizRef(newQuizId), quizData);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>joinLobby(newQuizId);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Błąd tworzenia quizu:", error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setError("Nie udało się stworzyć quizu. Spróbuj ponownie.");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('join-quiz-btn').addEventListener('click', async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const playerName = document.getElementById('player-name').value.trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const quizId = document.getElementById('quiz-id-input').value.trim().toUpperCase();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!playerName || !quizId) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setError("Musisz podać imię oraz ID quizu!");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizRef = getQuizRef(quizId);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizSnap = await getDoc(quizRef);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!quizSnap.exists()) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>setError("Quiz o podanym ID nie istnieje.");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizData = quizSnap.data();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (quizData.status !== 'lobby') {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>setError("Nie można dołączyć do quizu, który już się rozpoczął lub zakończył.");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await updateDoc(quizRef, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[`players.${currentUser.uid}`]: { name: playerName, score: 0, answer: null }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentQuizId = quizId;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>isHost = (quizData.hostId === currentUser.uid);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>joinLobby(quizId);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Błąd dołączania do quizu:", error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setError("Nie udało się dołączyć do quizu. Sprawdź ID i spróbuj ponownie.");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const joinLobby = (quizId) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>showScreen(lobbyScreen);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('quiz-id-display').textContent = quizId;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (isHost) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('host-controls').classList.remove('hidden');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (unsubscribeQuiz) unsubscribeQuiz();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>unsubscribeQuiz = onSnapshot(getQuizRef(quizId), (doc) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizData = doc.data();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!quizData) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>alert("Quiz został zakończony przez hosta.");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>resetApp();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateUI(quizData);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('copy-id-btn').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const quizId = document.getElementById('quiz-id-display').textContent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const textArea = document.createElement("textarea");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>textArea.value = quizId;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.body.appendChild(textArea);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>textArea.select();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.execCommand('copy');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>alert('Skopiowano ID quizu!');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (err) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error('Nie udało się skopiować ID: ', err);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>alert('Nie udało się skopiować ID.');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.body.removeChild(textArea);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const updateUI = (quizData) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const playerList = document.getElementById('player-list');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>playerList.innerHTML = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Object.values(quizData.players).forEach(player =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const playerDiv = document.createElement('div');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>playerDiv.className = "bg-gray-100 p-4 rounded-lg shadow";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>playerDiv.innerHTML = `&lt;div class="font-bold text-lg text-gray-800"&gt;${player.name}&lt;/div&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>playerList.appendChild(playerDiv);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (quizData.status === 'in-progress') {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showScreen(quizScreen);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderQuestion(quizData);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else if (quizData.status === 'scoreboard') {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showScreen(scoreboardScreen);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderScoreboard(quizData, false);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else if (quizData.status === 'finished') {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showScreen(scoreboardScreen);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderScoreboard(quizData, true);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('start-quiz-btn').addEventListener('click', async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await updateDoc(getQuizRef(currentQuizId), {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>status: 'in-progress',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>currentQuestionIndex: 0</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Błąd rozpoczynania quizu:", error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderQuestion = (quizData) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const questionIndex = quizData.currentQuestionIndex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const currentQuestions = quizData.questions; // Używamy pytań zapisanych w dokumencie</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (questionIndex &lt; 0 || questionIndex &gt;= currentQuestions.length) return;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const question = currentQuestions[questionIndex];</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('question-counter').textContent = `Pytanie ${questionIndex + 1} / ${currentQuestions.length}`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('progress-bar').style.width = `${((questionIndex + 1) / currentQuestions.length) * 100}%`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('question-text').textContent = question.question;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const answerOptionsContainer = document.getElementById('answer-options');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>answerOptionsContainer.innerHTML = '';</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const myAnswer = quizData.players[currentUser.uid].answer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const allAnswered = Object.values(quizData.players).every(p =&gt; p.answer !== null);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>question.options.forEach(option =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const button = document.createElement('button');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>button.textContent = option;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>button.className = 'answer-btn btn p-4 border-2 border-gray-300 rounded-lg text-lg hover:bg-gray-100';</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (myAnswer === null) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>button.onclick = () =&gt; submitAnswer(option);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>button.disabled = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (option === myAnswer) button.classList.add('selected');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (allAnswered) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (option === question.answer) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>button.classList.add('correct');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>} else if (option === myAnswer) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>button.classList.add('incorrect');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>answerOptionsContainer.appendChild(button);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const nextBtnContainer = document.getElementById('next-question-container');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (isHost &amp;&amp; allAnswered) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>nextBtnContainer.classList.remove('hidden');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>nextBtnContainer.classList.add('hidden');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const submitAnswer = async (answer) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizRef = getQuizRef(currentQuizId);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizSnap = await getDoc(quizRef);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizData = quizSnap.data();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const question = quizData.questions[quizData.currentQuestionIndex];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let scoreUpdate = 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (answer === question.answer) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>scoreUpdate = 10;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await updateDoc(quizRef, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[`players.${currentUser.uid}.answer`]: answer,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[`players.${currentUser.uid}.score`]: quizData.players[currentUser.uid].score + scoreUpdate</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Błąd przesyłania odpowiedzi:", error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('next-question-btn').addEventListener('click', async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizRef = getQuizRef(currentQuizId);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizSnap = await getDoc(quizRef);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const quizData = quizSnap.data();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const nextIndex = quizData.currentQuestionIndex + 1;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const playersWithResetAnswers = { ...quizData.players };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Object.keys(playersWithResetAnswers).forEach(uid =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>playersWithResetAnswers[uid].answer = null;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (nextIndex &lt; quizData.questions.length) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await updateDoc(quizRef, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>currentQuestionIndex: nextIndex,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>players: playersWithResetAnswers,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>status: 'in-progress'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await updateDoc(quizRef, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>status: 'finished'</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Błąd przechodzenia do następnego pytania:", error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderScoreboard = (quizData, isFinal) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const scoreboardContainer = document.getElementById('scoreboard');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>scoreboardContainer.innerHTML = '';</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const playersArray = Object.values(quizData.players);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>playersArray.sort((a, b) =&gt; b.score - a.score);</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('scoreboard-title').textContent = isFinal ? "Wyniki końcowe!" : "Ranking";</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>playersArray.forEach((player, index) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const rankDiv = document.createElement('div');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>rankDiv.className = 'flex items-center justify-between p-4 rounded-lg shadow';</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let medal = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (isFinal) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (index === 0) medal = '</span><span class="s2">🥇</span><span class="s1">';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (index === 1) medal = '</span><span class="s2">🥈</span><span class="s1">';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (index === 2) medal = '</span><span class="s2">🥉</span><span class="s1">';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>rankDiv.innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="text-2xl font-bold w-10"&gt;${medal || (index + 1) + '.'}&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xl font-semibold text-gray-800"&gt;${player.name}&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="text-2xl font-bold text-indigo-600"&gt;${player.score} pkt&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>`;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (isFinal &amp;&amp; index === 0) { rankDiv.classList.add('bg-yellow-100'); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>else if (isFinal &amp;&amp; index === 1) { rankDiv.classList.add('bg-gray-200'); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>else if (isFinal &amp;&amp; index === 2) { rankDiv.classList.add('bg-orange-100'); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>else { rankDiv.classList.add('bg-white'); }</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>scoreboardContainer.appendChild(rankDiv);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const finalControls = document.getElementById('final-results-controls');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (isFinal &amp;&amp; isHost) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>finalControls.classList.remove('hidden');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>finalControls.classList.add('hidden');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const resetApp = () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (unsubscribeQuiz) unsubscribeQuiz();</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (isHost &amp;&amp; currentQuizId) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>deleteDoc(getQuizRef(currentQuizId)).catch(err =&gt; console.error("Nie udało się usunąć quizu:", err));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>currentQuizId = null;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>isHost = false;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>unsubscribeQuiz = null;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('player-name').value = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('quiz-id-input').value = '';</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>showScreen(loginScreen);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('play-again-btn').addEventListener('click', resetApp);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// --- AUTENTYKACJA ---</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>onAuthStateChanged(auth, user =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (user) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentUser = user;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.log("Zalogowano anonimowo, UID:", user.uid);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const authenticate = async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (typeof __initial_auth_token !== 'undefined' &amp;&amp; __initial_auth_token) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await signInWithCustomToken(auth, __initial_auth_token);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await signInAnonymously(auth);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Błąd autentykacji:", error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setError("Wystąpił problem z połączeniem. Odśwież stronę.");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>authenticate();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+
+    <div id="app" class="w-full max-w-2xl mx-auto">
+        <div id="login-screen" class="card rounded-2xl p-8 shadow-2xl text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Quiz dla Przyjaciół!</h1>
+            <p class="text-gray-600 mb-6">Dołącz do gry i sprawdź swoją wiedzę.</p>
+            <div class="space-y-4">
+                <input type="text" id="player-name" placeholder="Wpisz swoje imię" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <input type="text" id="quiz-id-input" placeholder="Wpisz ID quizu (jeśli dołączasz)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="create-quiz-btn" class="btn w-full sm:w-auto bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-indigo-700">Stwórz nowy quiz</button>
+                <button id="join-quiz-btn" class="btn w-full sm:w-auto bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-600">Dołącz do quizu</button>
+            </div>
+            <p id="error-message" class="text-red-500 mt-4 h-5"></p>
+        </div>
+
+        <div id="lobby-screen" class="hidden card rounded-2xl p-8 shadow-2xl text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Poczekalnia</h2>
+            <p class="text-gray-600 mb-2">ID Twojego quizu (podaj znajomym):</p>
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <p id="quiz-id-display" class="text-2xl font-mono bg-gray-200 text-gray-800 px-4 py-2 rounded-lg"></p>
+                <button id="copy-id-btn" class="btn bg-gray-300 p-2 rounded-lg hover:bg-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">Czekamy na resztę graczy...</p>
+            <div id="player-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                </div>
+            <div id="host-controls" class="hidden mt-8">
+                <button id="start-quiz-btn" class="btn w-full bg-indigo-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-indigo-700 text-xl">Start!</button>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">Twórca quizu rozpoczyna grę.</p>
+        </div>
+
+        <div id="quiz-screen" class="hidden card rounded-2xl p-8 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <div id="question-counter" class="text-lg font-semibold text-gray-700">Pytanie 1 / 25</div>
+                <div id="timer" class="text-2xl font-bold text-indigo-600"></div>
+            </div>
+            <div class="bg-gray-200 h-2 rounded-full mb-6">
+                <div id="progress-bar" class="bg-indigo-500 h-2 rounded-full" style="width: 0%;"></div>
+            </div>
+            <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center min-h-[100px]">Ładowanie pytania...</h2>
+            <div id="answer-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                </div>
+            <div id="next-question-container" class="text-center mt-8 hidden">
+                <button id="next-question-btn" class="btn bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-indigo-700">Następne pytanie</button>
+            </div>
+        </div>
+
+        <div id="scoreboard-screen" class="hidden card rounded-2xl p-8 shadow-2xl">
+            <h2 id="scoreboard-title" class="text-3xl font-bold text-gray-800 mb-6 text-center">Ranking</h2>
+            <div id="scoreboard" class="space-y-3">
+                </div>
+            <div id="final-results-controls" class="hidden text-center mt-8">
+                <button id="play-again-btn" class="btn bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-indigo-700">Zagraj jeszcze raz</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importy Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- KONFIGURACJA ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const appId = 'friends-quiz-app';
+
+        // Inicjalizacja Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // --- BAZA PYTAŃ ---
+        const allQuestions = [
+            // Kategoria: Friends
+            { question: "Jak nazywał się pingwin-przytulanka Joey'ego?", options: ["Huggsy", "Waddles", "Snowy", "Flipper"], answer: "Huggsy" },
+            { question: "Jakie jest drugie imię Chandlera?", options: ["Muriel", "Marcel", "Bing", "Eustace"], answer: "Muriel" },
+            { question: "Ile sióstr ma Joey?", options: ["5", "6", "7", "8"], answer: "7" },
+            { question: "Jak ma na imię siostra bliźniaczka Phoebe?", options: ["Ursula", "Regina", "Fiona", "Leslie"], answer: "Ursula" },
+            { question: "Jaki był pies Ross'a i Moniki z dzieciństwa?", options: ["Bobo", "LaPooh", "Chi-Chi", "Patches"], answer: "Chi-Chi" },
+            { question: "Kim z zawodu jest Ross?", options: ["Archeologiem", "Geologiem", "Antropologiem", "Paleontologiem"], answer: "Paleontologiem" },
+            { question: "Kto mówi słynne 'Oh. My. God.'?", options: ["Janice", "Gunther", "Carol", "Estelle"], answer: "Janice" },
+            // Kategoria: Formuła 1
+            { question: "Który kierowca zdobył najwięcej tytułów Mistrza Świata (razem z M. Schumacherem)?", options: ["Ayrton Senna", "Lewis Hamilton", "Sebastian Vettel", "Alain Prost"], answer: "Lewis Hamilton" },
+            { question: "Jak nazywany jest tor Monza we Włoszech?", options: ["Świątynia Prędkości", "Zielone Piekło", "Magiczny Tor", "Arena Mistrzów"], answer: "Świątynia Prędkości" },
+            { question: "W jakim zespole jeździ Max Verstappen?", options: ["Mercedes", "Ferrari", "McLaren", "Red Bull Racing"], answer: "Red Bull Racing" },
+            { question: "Ile punktów otrzymuje kierowca za zwycięstwo w Grand Prix?", options: ["20", "25", "30", "18"], answer: "25" },
+            { question: "Z jakiego kraju pochodzi zespół Ferrari?", options: ["Niemcy", "Wielka Brytania", "Włochy", "Francja"], answer: "Włochy" },
+            { question: "Co oznacza czarno-biała flaga w szachownicę w F1?", options: ["Kara", "Ostrzeżenie", "Koniec wyścigu", "Awaria bolidu"], answer: "Koniec wyścigu" },
+            // Kategoria: Polska
+            { question: "Jaki jest najwyższy szczyt w Polsce?", options: ["Giewont", "Śnieżka", "Rysy", "Babia Góra"], answer: "Rysy" },
+            { question: "Które polskie miasto słynie z pierników?", options: ["Kraków", "Gdańsk", "Poznań", "Toruń"], answer: "Toruń" },
+            { question: "Kto był pierwszym koronowanym królem Polski?", options: ["Mieszko I", "Bolesław I Chrobry", "Kazimierz Wielki", "Władysław Jagiełło"], answer: "Bolesław I Chrobry" },
+            { question: "Jaka jest najdłuższa rzeka w Polsce?", options: ["Odra", "Warta", "Bug", "Wisła"], answer: "Wisła" },
+            { question: "Który polski kompozytor słynie z polonezów i mazurków?", options: ["Stanisław Moniuszko", "Henryk Wieniawski", "Fryderyk Chopin", "Ignacy Jan Paderewski"], answer: "Fryderyk Chopin" },
+            // Kategoria: Z naszych rozmów
+            { question: "Kto zaproponował nagrywanie spotkania i transkrypcję AI?", options: ["Błażej", "Marta", "Ewelka", "Kuras"], answer: "Ewelka" },
+            { question: "Na którą godzinę Błażej ustawił spotkanie?", options: ["21:00", "21:15", "20:30", "21:30"], answer: "21:15" },
+            { question: "Kto jako pierwszy podał swojego maila w rozmowie?", options: ["Kuras", "Błażej", "Marta Kędzierska Kurasinska", "Ewelka"], answer: "Marta Kędzierska Kurasinska" },
+            { question: "Jaki program do rysowania został wspomniony w rozmowie?", options: ["Photoshop", "Miro", "Figma", "Canva"], answer: "Figma" },
+            { question: "Co Błażej zrobił z zebranymi mailami?", options: ["Wysłał zaproszenie", "Zapisał w notatkach", "Dodał do opisu grupy", "Wydrukował"], answer: "Dodał do opisu grupy" },
+            { question: "Kto zapytał 'Evelka, a chcesz jechać ? xD'?", options: ["Kuras", "Błażej", "Kuba", "Marta"], answer: "Błażej" },
+            { question: "Co według Marty trzeba by zrobić z rowerem, żeby zmieściła się Ewelka?", options: ["Sprzedać go", "Złożyć go", "Pomalować go", "Zostawić w domu"], answer: "Złożyć go" },
+        ];
+
+        // Funkcja do tasowania tablicy (algorytm Fisher-Yates)
+        const shuffleArray = (array) => {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        };
+        const questions = shuffleArray([...allQuestions]);
+
+        // --- ZMIENNE STANU APLIKACJI ---
+        let currentUser = null;
+        let currentQuizId = null;
+        let isHost = false;
+        let unsubscribeQuiz = null;
+        let currentQuestionIndex = 0;
+        let currentScore = 0;
+        let isAnswered = false;
+
+        // --- ELEMENTY DOM ---
+        const loginScreen = document.getElementById('login-screen');
+        const lobbyScreen = document.getElementById('lobby-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const scoreboardScreen = document.getElementById('scoreboard-screen');
+        const errorMessage = document.getElementById('error-message');
+        const playerNameInput = document.getElementById('player-name');
+        const quizIdInput = document.getElementById('quiz-id-input');
+        const createQuizBtn = document.getElementById('create-quiz-btn');
+        const joinQuizBtn = document.getElementById('join-quiz-btn');
+        const quizIdDisplay = document.getElementById('quiz-id-display');
+        const copyIdBtn = document.getElementById('copy-id-btn');
+        const playerList = document.getElementById('player-list');
+        const hostControls = document.getElementById('host-controls');
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const questionCounter = document.getElementById('question-counter');
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progress-bar');
+        const questionText = document.getElementById('question-text');
+        const answerOptionsContainer = document.getElementById('answer-options');
+        const nextQuestionContainer = document.getElementById('next-question-container');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const scoreboard = document.getElementById('scoreboard');
+        const scoreboardTitle = document.getElementById('scoreboard-title');
+        const playAgainBtn = document.getElementById('play-again-btn');
+
+        // --- FUNKCJE POMOCNICZE ---
+        const showScreen = (screen) => {
+            [loginScreen, lobbyScreen, quizScreen, scoreboardScreen].forEach(s => s.classList.add('hidden'));
+            screen.classList.remove('hidden');
+        };
+
+        const setError = (message) => {
+            errorMessage.textContent = message;
+            setTimeout(() => errorMessage.textContent = '', 3000);
+        };
+
+        const getQuizRef = (quizId) => {
+            return doc(db, "artifacts", appId, "public/data/quizzes", quizId);
+        };
+
+        const updatePlayerList = (players) => {
+            playerList.innerHTML = '';
+            Object.values(players).forEach(player => {
+                const playerEl = document.createElement('div');
+                playerEl.textContent = player.name;
+                playerEl.className = 'bg-gray-100 p-3 rounded-lg font-semibold';
+                playerList.appendChild(playerEl);
+            });
+        };
+
+        const displayQuestion = (questionData) => {
+            isAnswered = false;
+            questionText.textContent = questionData.question;
+            answerOptionsContainer.innerHTML = '';
+            questionData.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'answer-btn btn w-full p-4 rounded-lg bg-white shadow-sm text-gray-800 font-semibold text-left border border-transparent hover:border-indigo-500';
+                button.addEventListener('click', () => handleAnswer(option, questionData.answer, button));
+                answerOptionsContainer.appendChild(button);
+            });
+            nextQuestionContainer.classList.add('hidden');
+        };
+
+        const handleAnswer = async (selectedAnswer, correctAnswer, button) => {
+            if (isAnswered) return;
+            isAnswered = true;
+            
+            const quizRef = getQuizRef(currentQuizId);
+            const quizSnap = await getDoc(quizRef);
+            const quizData = quizSnap.data();
+
+            const isCorrect = selectedAnswer === correctAnswer;
+
+            if (isCorrect) {
+                currentScore += 1;
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+                const correctButton = Array.from(answerOptionsContainer.children).find(btn => btn.textContent === correctAnswer);
+                if (correctButton) {
+                    correctButton.classList.add('correct');
+                }
+            }
+            
+            // Highlight the selected answer
+            button.classList.add('selected');
+
+            // Update player's score in the database
+            const players = quizData.players;
+            players[currentUser.uid].score = currentScore;
+            await updateDoc(quizRef, { players });
+
+            // Allow moving to the next question
+            if (isHost) {
+                nextQuestionContainer.classList.remove('hidden');
+            }
+        };
+
+        // --- LOGIKA QUIZU ---
+
+        document.getElementById('create-quiz-btn').addEventListener('click', async () => {
+            const playerName = playerNameInput.value.trim();
+            if (!playerName) {
+                setError("Musisz podać swoje imię!");
+                return;
+            }
+            isHost = true;
+            const newQuizId = Math.random().toString(36).substring(2, 8).toUpperCase();
+            currentQuizId = newQuizId;
+
+            await signInAnonymously(auth);
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUser = user;
+                    const quizData = {
+                        hostId: currentUser.uid,
+                        questions: questions,
+                        currentQuestionIndex: 0,
+                        state: 'lobby', // 'lobby', 'quiz', 'scoreboard'
+                        players: {
+                            [currentUser.uid]: {
+                                name: playerName,
+                                score: 0
+                            }
+                        }
+                    };
+                    const quizRef = getQuizRef(currentQuizId);
+                    await setDoc(quizRef, quizData);
+                    document.getElementById('quiz-id-display').textContent = newQuizId;
+                    showScreen(lobbyScreen);
+                    hostControls.classList.remove('hidden');
+                    startListeningToQuiz();
+                }
+            });
+        });
+
+        document.getElementById('join-quiz-btn').addEventListener('click', async () => {
+            const playerName = playerNameInput.value.trim();
+            const quizId = quizIdInput.value.trim().toUpperCase();
+            if (!playerName || !quizId) {
+                setError("Musisz podać swoje imię i ID quizu!");
+                return;
+            }
+
+            const quizRef = getQuizRef(quizId);
+            const quizSnap = await getDoc(quizRef);
+
+            if (!quizSnap.exists()) {
+                setError("Quiz o takim ID nie istnieje!");
+                return;
+            }
+
+            currentQuizId = quizId;
+            await signInAnonymously(auth);
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUser = user;
+                    const quizData = quizSnap.data();
+                    if (quizData.players && quizData.players[currentUser.uid]) {
+                        // Player already exists, do nothing
+                    } else {
+                        const players = quizData.players || {};
+                        players[currentUser.uid] = { name: playerName, score: 0 };
+                        await updateDoc(quizRef, { players });
+                    }
+                    document.getElementById('quiz-id-display').textContent = quizId;
+                    showScreen(lobbyScreen);
+                    startListeningToQuiz();
+                }
+            });
+        });
+
+        startQuizBtn.addEventListener('click', async () => {
+            if (!isHost) return;
+            const quizRef = getQuizRef(currentQuizId);
+            await updateDoc(quizRef, { state: 'quiz' });
+        });
+        
+        nextQuestionBtn.addEventListener('click', async () => {
+            if (!isHost) return;
+            const quizRef = getQuizRef(currentQuizId);
+            const quizSnap = await getDoc(quizRef);
+            const quizData = quizSnap.data();
+            const nextIndex = quizData.currentQuestionIndex + 1;
+
+            if (nextIndex < quizData.questions.length) {
+                await updateDoc(quizRef, {
+                    currentQuestionIndex: nextIndex
+                });
+            } else {
+                await updateDoc(quizRef, { state: 'scoreboard' });
+            }
+        });
+
+        playAgainBtn.addEventListener('click', () => {
+            window.location.reload();
+        });
+
+        // --- ZARZĄDZANIE STANEM QUIZU W CZASIE RZECZYWISTYM ---
+
+        const startListeningToQuiz = () => {
+            const quizRef = getQuizRef(currentQuizId);
+            if (unsubscribeQuiz) {
+                unsubscribeQuiz();
+            }
+            unsubscribeQuiz = onSnapshot(quizRef, (docSnap) => {
+                const quizData = docSnap.data();
+                if (!quizData) return;
+
+                if (isHost) {
+                    // Host-specific logic
+                }
+                
+                switch (quizData.state) {
+                    case 'lobby':
+                        showScreen(lobbyScreen);
+                        updatePlayerList(quizData.players);
+                        break;
+                    case 'quiz':
+                        showScreen(quizScreen);
+                        updatePlayerList(quizData.players);
+                        
+                        currentQuestionIndex = quizData.currentQuestionIndex;
+                        questionCounter.textContent = `Pytanie ${currentQuestionIndex + 1} / ${quizData.questions.length}`;
+                        const currentQuestion = quizData.questions[currentQuestionIndex];
+                        displayQuestion(currentQuestion);
+                        break;
+                    case 'scoreboard':
+                        showScreen(scoreboardScreen);
+                        displayScoreboard(quizData.players);
+                        break;
+                }
+            });
+        };
+
+        const displayScoreboard = (players) => {
+            scoreboard.innerHTML = '';
+            const sortedPlayers = Object.values(players).sort((a, b) => b.score - a.score);
+            sortedPlayers.forEach((player, index) => {
+                const playerEl = document.createElement('div');
+                playerEl.className = 'flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-sm';
+                playerEl.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="font-bold text-lg mr-2">${index + 1}.</span>
+                        <span class="text-xl font-semibold">${player.name}</span>
+                    </div>
+                    <span class="text-xl font-bold text-indigo-600">${player.score}</span>
+                `;
+                scoreboard.appendChild(playerEl);
+            });
+
+            if (isHost) {
+                document.getElementById('final-results-controls').classList.remove('hidden');
+            }
+        };
+
+    </script>
 </body>
 </html>
